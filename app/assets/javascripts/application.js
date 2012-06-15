@@ -13,3 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(document).ready(function(){
+
+  $(".ajax").live('click', function() {
+	  $.ajax({
+		  url: "projects/new",
+		  data: $(this).serialize(),
+		  success: function(msg) {
+		    $(".stipe").append(msg);
+		  }
+	  });
+	  return false;
+  });
+
+		
+});

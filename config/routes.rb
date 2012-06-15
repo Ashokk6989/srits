@@ -1,4 +1,12 @@
 Sample::Application.routes.draw do
+  resources :performances
+  
+  resources :projects
+
+  resources :platforms
+
+  resources :employees
+
   devise_for :views
 
   resources :homes
@@ -54,7 +62,7 @@ Sample::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'homes#index'
+  root :to => 'employees#index'
 
   # See how all your routes lay out with "rake routes"
 

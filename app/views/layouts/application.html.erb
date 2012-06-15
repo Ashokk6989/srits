@@ -3,19 +3,68 @@
 <head>
   <title>Sample</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application","jquery-1.4.2.min","rails.js","highcharts" %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript"> 
+$(document).ready(function(){
+$(".flip").click(function(){
+    $(".panel").slideToggle("slow");
+  });
+});
+$(document).ready(function(){
+     $("table tr:even").addClass('stripe');
+});
+</script>
 </head>
 <body>
-<div id="user_nav">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
-</div>
-<%= yield %>
+<div class="container">
+ <div class="header">
+      
+    	<div class="top_section">
+          		<img src="/assets/logo.png" alt="Smiley face"  />
+                       <ol>
+                             <li><a href="/employees">HOME</a></li>
+                             <li><a href="/platforms">PLATFORM</a></li>
+                             <li><a href="/projects">PROJECT</a></li>
+                             <li><a href="/performances">PERFORMANCE</a></li>
+                       </ol>  
+   
 
+ </div>
+ <div id="user_nav">
+    <% if user_signed_in? %>
+      Signed in as <%= current_user.email %>. Not you?
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+    <% end %>
+  </div>
+ </div>
+
+  
+   <%= yield %>	 
+  
+  
+  
+<footer>
+        <div class="foot">
+                  <div class="foot_1">  
+                  <p>© Copyright 2012  Shri Ram IT Solutions All Rights Reserved</p>
+                  <a href="http://www.shriramits.com">More details.Click!</a>
+                  <span>Designed by ROR TEAM</span>
+	      </div>
+	      <div class="nav">
+	          	<ol>
+                             <li><a href="/employees">HOME</a></li>
+                             <li><a href="/platforms">PLATFORM</a></li>
+                             <li><a href="/projects">PROJECT</a></li>
+                             <li><a href="/performances">PERFORMANCE</a></li>
+                       </ol>  
+       	</div>                   
+</footer>
+	
+
+</div>
 </body>
 </html>

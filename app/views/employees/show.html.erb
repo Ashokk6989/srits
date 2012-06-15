@@ -1,0 +1,32 @@
+<div class="index">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @employee.name %>
+</p>
+
+<p>
+  <b>Platform:</b>
+  <%= @employee.platform.platform %>
+</p>
+
+<p>
+  <b>Eamil:</b>
+  <%= @employee.eamil %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @employee.location %>
+</p>
+
+<p>
+  <b>Mobile:</b>
+  <%= @employee.mobile %>
+</p>
+
+</div>
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> 
+<%= link_to 'Back', employees_path %>

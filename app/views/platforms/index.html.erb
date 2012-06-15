@@ -1,0 +1,27 @@
+<div class="indexcontainer">
+<div class="index">
+<marquee>Listing platforms</marquee>
+
+<table border="0" cellspacing="0" cellpadding="0" class="stipe">
+  <tr>
+    <th>Platform</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @platforms.each do |platform| %>
+  <tr>
+    <td><%= platform.platform %></td>
+    <td><%= link_to 'Show', platform %></td>
+    <td><%= link_to 'Edit', edit_platform_path(platform) %></td>
+    <td><%= link_to 'Destroy', platform, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= paginate @platforms %>
+</div>
+
+<%= render :partial => "/share/right_side"%>
+</div>

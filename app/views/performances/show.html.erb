@@ -1,0 +1,28 @@
+<div class="index">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @performance.employee.name unless @performance.employee.nil? %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @performance.project.name unless @performance.project.nil? %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%= @performance.duration %>
+</p>
+
+<p>
+  <b>Grade:</b>
+  <%= @performance.grade %>
+  
+</p>
+<a href="http://www.gmail.com"><input type="button" value="Send Mail"/>
+</div>
+
+<%= link_to 'Edit', edit_performance_path(@performance) %> 
+<%= link_to 'Back', performances_path %>
