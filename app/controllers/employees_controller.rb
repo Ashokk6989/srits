@@ -3,19 +3,25 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   before_filter :authenticate_user!
   def index
+    @count=Employee.all
+    if params[:search].present?
+    @employees = Employee.search(params[:search])
+    render "search"
+   else
     @employees = Employee.order("updated_at DESC").page(params[:page]).per(5)
-    
         respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @employees }
     end
+    end
+    
   end
 
   # GET /employees/1
   # GET /employees/1.json
   def show
     @employee = Employee.find(params[:id])
-
+    @comments = @employee.comments.order("created_at DESC").page(params[:page]).per(5)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @employee }
@@ -45,6 +51,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
+        EmployeeMailer.employee_creation(@employee).deliver  
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render json: @employee, status: :created, location: @employee }
       else

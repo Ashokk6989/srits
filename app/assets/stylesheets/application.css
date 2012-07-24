@@ -16,20 +16,44 @@
 {
 width:100%;
 float:left;
+background-color: white;
+position: absolute;
 } 
+body{
+margin:0;}
 .header
 {
-background: url(../assets/header2.jpg);
-width:100%;
-text-decoration:none;
+background-color: #99938B;
+width: 100%;
+text-decoration: none;
+border-radius: 20px;
+box-shadow: 5px 10px 7px #D5D5D5;
+float: left;
 }
 .top_section
 {
 width:960px; 
-height:88px;
 margin:0 auto;
 padding:0;
 }
+.back_nav{
+background-color:#3C3B37;
+width:100%;
+float:left;
+border-radius: 20px;}
+
+#user_nav
+{
+color:white;
+margin: 0 auto;
+width:960px;
+background-color:#3C3B37; 
+}
+
+.imageexit{
+float: right;
+}
+
 .logo
 {
 color: white;
@@ -39,11 +63,27 @@ font-size: 60px;
 padding-top: 10px;
 font-weight:100;
 }
+.navg {
+float: right;
+margin: 25px 0px 0px 0px;
+background-color: #D5D5D5;
+border-radius: 25PX;}
+
+.navg ol{
+margin-right: 25px;
+margin-bottom: 8px;
+float:left;}
+.navg ol li a{
+border-radius: 15PX;}
+
+.navg ol li a:hover{
+background-color:#99938B;}
+
 ol
 {
 float: right;
 margin:0;
-padding: 16px 0px 0px 0px;
+padding: 10px 0px 0px 0px;
 text-decoration: none;
 }
 ol li
@@ -58,17 +98,18 @@ li a
 font-size:13px;
 float: right;
 margin:0;
-padding: 15px 1px 15px;
+padding: 6px 2px;
 text-decoration: none;
 font-family:sans-serif;
 font-weight:bold;
 color:#3C3B37;
 }
-#user_nav
-{
-color:red;
-margin: 0 auto;
-width: 960px;
+
+.emp{
+float:left;
+width: 270px;
+height: 67px;
+font-weight:bold;
 }
 .field
 {
@@ -78,7 +119,7 @@ color:red;
 .indexcontainer {
 width:960px;
 margin:0 auto;
-border:1px solid red; }
+}
 
 
 .indexright
@@ -102,7 +143,8 @@ padding: 0; }
 }
 
 .index {
-float:left; }
+float:left;
+ }
 
 .indexright li a
 {
@@ -117,10 +159,13 @@ text-decoration: none;
 input[type="button"]{
 float: left;
 line-height: 30px;
-background: url(../assets/button.jpg) no-repeat;
+background: url(../assets/Multicolore1.png) no-repeat;
 background-size: 100% 100%;
 border: none;
 background-color: transparent;
+color:color: orangeRed;
+font-weight:bold;
+padding: 10px 10px 5px 10px;
 }
 .indexleft
 {
@@ -132,13 +177,14 @@ div p.flip
 {
 margin-top: 0px;
 text-align: center;
-color: royalBlue;
+color:  beige;
 font-size: 13px;
-background: url(../assets/images.jpg)no-repeat;
+font-weight:bold;
+background: url(../assets/images2.jpg)no-repeat;
 background-size: 100% 100%;
-padding: 0px 40px 10px 45px;
+padding: 20px 50px 0px 40px;
 float: left;
-line-height: 70px;
+line-height: 40px;
 }
 div.panel
 {
@@ -155,11 +201,47 @@ border-radius: 60px;
 
 .scroll {
  float: left;
-width: 100%; }
+}
 
 .scroll marquee {
 height:275px; 
 float: left;}
+
+.scrollright { 
+float:left;
+background: url(../assets/wallpaper.png)no-repeat;
+width: 435px;
+height: 290px; 
+ }
+
+.scrollright2 {
+background: url(../assets/web-design-tools.png)no-repeat;
+float: left;
+height: 253px;
+width: 187px;
+margin-top: 35px;
+padding-right: 0px;
+margin-left: 60px;
+ }
+
+.scrollright ul {
+color:red;
+float:left; }
+
+.scrollright li{
+color:red; }
+
+.scrollright a {
+float:none; }
+
+.scrollright p {
+color: red;
+margin-left: 20px;
+font-size: 20px; }
+
+.scrolloverview {
+float:left; 
+width:100%;}
  
 marquee {
 color: blueViolet;
@@ -167,29 +249,34 @@ font-size: 25px;
 margin-top: 15px;
 font-weight: bold;
 height: 10px; }
+.wrapper{
+width: 960px;
+margin: 0 auto;
+min-height: 500px;
+}
 
 table     {
-     background: #F2F1F0;
-color: #A81D21;
-font-family: Georgia, "Times New Roman", serif;
-letter-spacing: 1px;
-font-style: italic;
-margin: 25px auto;
-border-spacing: 1px;
-border:1px solid #FA6F20;
+background: #F2F1F0;
+border-spacing: 2px;
+border:3px solid #99938B;
+border-radius: 15px 15px 15px 15px;
+float: left;
+margin-left: 10px;
 }
 table tr  {
      height: 50px;
      text-indent: 25px;
 }
 .stripe   {
-     background: #FACC87;
+     background: #D5D5D5;
 }
 table th  {
-     background:#F99F3D;
-     color: #fff;
-     font-family: Arial, Helvetica, sans-serif;
-     font-style: normal;
+background:#99938B;
+color: #fff;
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+border-radius: 10px;
+padding-right: 25px;
     }
 .devisecontainer {
 height:500px;
@@ -235,10 +322,15 @@ float: left;
 line-height: 100px;
 font-size: 50px; }
 
+
 Footer{
 float: left;
 width:100%;
-background: url(../assets/header2.jpg);
+background-color: #99938B;
+border-radius: 0px 0px 20px 20px;
+box-shadow: 3px 8px 8px 16px #D5D5D5;
+position:relative;
+bottom:0;
 }
 
 .foot {

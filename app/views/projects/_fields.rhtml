@@ -1,0 +1,7 @@
+<p>
+  Name: <%= f.text_field :name %>
+</p>
+<div id="tasks">
+  <%= render :partial => 'task', :collection => @project.tasks %>
+</div>
+<p><%= add_task_link "Add a task" %></p>

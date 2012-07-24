@@ -1,4 +1,8 @@
 Sample::Application.routes.draw do
+  resources :todos
+
+  resources :comments
+
   resources :performances
   
   resources :projects

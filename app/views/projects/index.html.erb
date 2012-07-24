@@ -1,6 +1,7 @@
-<div class="indexcontainer">
-<div class="index">
-<marquee>Listing projects</marquee>
+<div class="list" style="float:left;width: 960px;clear:both;margin-bottom: 15px;">
+  <h1>Listing Projects</h1>
+    <span class="emp" style="float: left;width: 270px;height: 80px;font-weight: bold;"><img src="/assets/Project-icon .png" alt="Smiley face"/>Number of projects(<%#=@count.count%>) </span>
+    </div>
 
 <table border="0" cellspacing="0" cellpadding="0" class="stipe">
   <tr>
@@ -22,7 +23,8 @@
 <% end %>
 </table>
 <br />
+<div style="float:left;">
 <%= paginate @projects%>
 </div>
-<%= render :partial => "/share/right_side"%>
-</div>
+<%#= render :partial => "/share/right_side"%>
+

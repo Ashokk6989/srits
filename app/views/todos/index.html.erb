@@ -1,0 +1,80 @@
+<script type="text/javascript">
+$(document).ready(function(){
+$('#new_todo').submit(function() {
+  $.ajax({
+    url: "/todos",
+    type: "POST",
+    data: $(this).serialize(),
+    success: function(msg) {
+      $('#table_show').prepend(msg);
+      console.log('successssssss');
+      
+    }
+  });
+	return false;
+});
+});
+</script>
+<style>
+#todo_task {
+height:30px;}
+</style>
+<%= form_for(@todo) do |f| %>
+  <% if @todo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+
+      <ul>
+      <% @todo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="todo" style="float:left;">
+    <div class="field" style="float:left;">
+      <%= f.label :date %><br />
+      <%= f.date_select :date %>
+    </div>
+    <div class="field" style="float:left;">
+      <%= f.label :task %><br />
+      <%= f.text_area :task %>
+    </div>
+    <div class="field" style="float:left;">
+      <%= f.label :time %><br />
+      <%= f.text_field :time %>
+    </div>
+    <div class="actions" style="float:left;">
+      <%= f.submit %>
+    </div>
+<% end %>
+</div>
+
+<div id="table_show" style="float:left;">
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Task</th>
+    <th>Time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @todos.each do |todo| %>
+  <tr>
+    <td><%= todo.date %></td>
+    <td><%= todo.task %></td>
+    <td><%= todo.time %></td>
+    <td><%= link_to 'Show', todo %></td>
+    <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
+    <td><%= link_to "destroy", todo, :confirm => "Are you sure?", :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<br/>
+<%= paginate @todos %>
+<p>Download:
+<%= link_to "Excel",todos_path(format: "xls") %></p>
+</div>
+

@@ -1,13 +1,25 @@
-<div class="indexcontainer">
-<div class="index"> 
-<marquee>Listing performances</marquee>
-         
+<div class="list" style="float:left;width: 960px;clear:both;margin-bottom: 15px;">
+  <h1>Listing Performance</h1>
+    <span class="emp"><img src="/assets/monitor.png" alt="Smiley face"/>Number of performance(<%=@count.count%>) </span>
+     <div class="search" style="float:right;margin-right: 20px;margin-top: 15px;">
+     <%= form_tag performances_path, :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
+      </p>
+     <% end %>
+     </div> 
+ </div> 
 <table border="0" cellspacing="0" cellpadding="0" class="stipe">
   <tr>
-    <th>Name</th>
-    <th>Project</th>
-    <th>Duration</th>
-    <th>Grade</th>
+    <th>Name </th>
+    <th>Project </th>
+    <th>Client &nbsp;</th>
+    <th>Start Date &nbsp;</th>
+    <th>End Date &nbsp;</th>
+    <th>Task </th>
+    <th>Duration &nbsp;</th>
+    <th>Grade &nbsp;</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +29,10 @@
   <tr>
     <td><%= performance.employee.name unless performance.employee.nil? %></td>
     <td><%= performance.project.name unless performance.project.nil? %></td>
+    <td><%= performance.project.client unless performance.project.nil? %></td>
+    <td><%= performance.start_date %></td>
+    <td><%= performance.end_date %></td>
+    <td><%= performance.task %></td>
     <td><%= performance.duration %></td>
     <td><%= performance.grade %></td>
     <td><%= link_to 'Show', performance %></td>
@@ -27,8 +43,8 @@
 </table>
 
 <br />
-
+<div style="float:left;">
 <%= paginate @performances %>
 </div>
-<%= render :partial => "/share/right_side"%>
-</div>
+<%#= render :partial => "/share/right_side"%>
+

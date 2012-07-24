@@ -1,18 +1,25 @@
-<div class="indexcontainer">
-<div class="index">
-<marquee>Listing employees</marquee>
-  
-  
+<div class="list" style="float:left;width: 960px;clear:both;margin-bottom: 15px;margin-left: 10px;">
+  <h1>Listing employees</h1>
+  <span class="emp"><img src="/assets/icon-employee.png" alt="Smiley face"/>Number of Employees(<%=@count.count%>)</span>
+ 
+     <div class="search" style="float:right;margin-right: 20px;margin-top: 15px;">
+      <%= form_tag employees_path, :method => 'get' do %>
+      <p>
+        <%= submit_tag "Search", :name => nil %>
+        <%= text_field_tag :search, params[:search] %>
+      </p>
+    <% end %>
+    </div> 
+ </div>
   <table border="0" cellspacing="1" cellpadding="1" class="stipe">
     <tr>
       <th>Name</th>
       <th>Platform</th>
       <th>Eamil</th>
-      <th>Location</th>
+      <th>Address</th>
       <th>Mobile</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Action</th>
+      
     </tr>
     
   <% @employees.each do |employee| %>
@@ -22,20 +29,20 @@
       <td><%= employee.eamil %></td>
       <td><%= employee.location %></td>
       <td><%= employee.mobile %></td>
-      <td><%= link_to 'Show', employee %></td>
-      <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-      <td><%= link_to 'Destroy', employee, confirm: 'Are you sure?', method: :delete %></td>
+      <td><%= link_to 'Destroy', employee, confirm: 'Are you sure?', method: :delete %>
+      <%= link_to 'Edit', edit_employee_path(employee) %>
+      <%= link_to 'Show', employee %>
+      </td>
     </tr>
     <% end %>
   </table>
 
   <br />
-  
+  <div style="float:left;margin-left: 10px;">
   <%= paginate @employees %>
-  
-</div> 
- 
-<%= render :partial => "/share/right_side"%>
+  </div>
 
-</div>
+<%#= render :partial => "/share/right_side"%>
+
+
 

@@ -1,32 +1,82 @@
+<script type="text/javascript">
+$(document).ready(function(){
+$('#new_comment').submit(function() {
+  $.ajax({
+    url: "/comments",
+    type: "POST",
+    data: $(this).serialize(),
+    success: function(msg) {
+      $('#comment_show').prepend(msg);
+      console.log('successssssss');
+      
+    }
+  });
+	return false;
+});
+});
+</script>
+<style>
+
+#comment_content {
+height:30px;
+}
+
+.comm {
+float:left;}
+
+</style>
+
 <div class="index">
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @employee.name %>
-</p>
-
-<p>
-  <b>Platform:</b>
-  <%= @employee.platform.platform %>
-</p>
-
-<p>
-  <b>Eamil:</b>
-  <%= @employee.eamil %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= @employee.location %>
-</p>
-
-<p>
-  <b>Mobile:</b>
-  <%= @employee.mobile %>
-</p>
-
+  <p id="notice"><%= notice %></p>
+  <p>
+    <b>Name:</b>
+    <%= @employee.name %>
+  </p>
+  <p>
+    <b>Platform:</b>
+    <%= @employee.platform.platform %>
+  </p>
+  <p>
+    <b>Eamil:</b>
+    <%= @employee.eamil %>
+  </p>
+  <p>
+    <b>Address:</b>
+    <%= @employee.location %>
+  </p>
+  <p>
+    <b>Mobile:</b>
+    <%= @employee.mobile %>
+  </p>
+  <div class="comm">
+    <h2>New Comment</h2>
+      <%= form_for Comment.new(:commentable => @employee) do |f| %>
+        <p>
+          <%= f.hidden_field :commentable_id %>
+          <%= f.hidden_field :commentable_type %>
+          <%= f.label :content %><br />
+          <%= f.text_area :content %>
+          <%#= f.label :Time %><br />
+          <%#= f.text_field :time %>
+        </p>
+        <p><%= f.submit "Submit" %></p>
+      <% end %>
+      <div id="comment_show">
+      <% @comments.each do |c| %>
+        <p>
+          <b>Comment:</b>
+          <%= c.content %>&nbsp;&nbsp;<br/> 
+          (<%= (c.created_at) %>)
+        </p>
+        <!--<p>
+          <b>Time:</b>
+          <%#= c.time %>&nbsp;&nbsp;<br/> 
+        </p>-->
+      <% end %>
+      </div>
+      <%= paginate @comments %>
+  </div>
 </div>
-
-<%= link_to 'Edit', edit_employee_path(@employee) %> 
-<%= link_to 'Back', employees_path %>
+  <div class="employee"><img src="/assets/employee-scheduling-softwar.jpg" alt="Smiley face"  /></div>
+  <%= link_to 'Edit', edit_employee_path(@employee) %> 
+  <%= link_to 'Back', employees_path %>

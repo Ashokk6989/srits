@@ -1,7 +1,10 @@
 <div class="indexcontainer">
 <div class="index">
-<marquee>Editing project</marquee>
-
+<h1>Editing project</h1>
+<% form_for :project, :url => project_path(@project), :html => { :method => 'put' } do |f| %>
+  <%= render :partial => 'fields', :locals => { :f => f } %>
+  <p><%= submit_tag "Update Project" %></p>
+<% end %>
 <%= render 'form' %>
 </div>
 <%= link_to 'Show', @project %> |

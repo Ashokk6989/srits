@@ -21,6 +21,22 @@
     <%= f.select :project_id, Project.all.map{|p| [p.name,p.id]} %>
   </div>
   <div class="field">
+    <%= f.label "client" %><br />
+    <%= f.select :client, Project.all.map{|p| [p.client,p.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :"Start Date" %><br />
+    <input type="text" id="date" />
+  </div>
+  <div class="field">
+    <%= f.label :"End Date" %><br />
+    <%= f.text_field :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :"Task" %><br />
+    <%= f.text_area :task %>
+  </div>
+  <div class="field">
     <%= f.label :duration %><br />
     <%= f.text_field :duration %>
   </div>
@@ -28,8 +44,9 @@
     <%= f.label :grade %><br />
     <%= f.text_field :grade %>
   </div>
- <div class="actions">
+  <div class="actions">
     <%= f.submit %>
   </div>
   </div>
+  <div class="performance" style="float:left;"><img src="/assets/clipart_of_25029_smjpg_2.jpg" alt="Smiley face"  /></div>
 <% end %>

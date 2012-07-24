@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120601094240) do
+ActiveRecord::Schema.define(:version => 20120720092124) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "time"
+  end
 
   create_table "employees", :force => true do |t|
     t.string   "name"
@@ -37,6 +46,11 @@ ActiveRecord::Schema.define(:version => 20120601094240) do
     t.string   "grade"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "content"
+    t.date     "start_date"
+    t.string   "task"
+    t.string   "client"
+    t.date     "end_date"
   end
 
   create_table "platforms", :force => true do |t|
@@ -49,6 +63,19 @@ ActiveRecord::Schema.define(:version => 20120601094240) do
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "client"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "todos", :force => true do |t|
+    t.date     "date"
+    t.string   "task"
+    t.string   "time"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

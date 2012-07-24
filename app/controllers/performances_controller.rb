@@ -1,24 +1,33 @@
 class PerformancesController < ApplicationController
   def index
+    @count=Performance.all
+    if params[:search].present?
+     @performances = Performance.search(params[:search])
+     render "search"
+    else
     @performances = Performance.page(params[:page]).per(5)
-    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @performances }
+    end
     end
   end
 
   # GET /performances/1
   # GET /performances/1.json
   def show
-    @performance = Performance.find(params[:id])
-    
+   @performance = Performance.find(params[:id])
+   @comments = @performance.comments.order("created_at DESC").page(params[:page]).per(5)
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @performance }
-    end
+      format.pdf do
+      pdf = PerformancePdf.new(@performance)
+      send_data  pdf.render, filename:"performance",
+                              type:"application/pdf",
+                            disposition: "inline"
+      end
+      end
   end
-
   # GET /performances/new
   # GET /performances/new.json
   def new
@@ -42,7 +51,8 @@ class PerformancesController < ApplicationController
     
     respond_to do |format|
       if @performance.save
-      
+      PerformanceMailer.performance_confirmation(@performance).deliver
+      #PerformanceMailer.send_new(@performance).deliver  
         format.html { redirect_to @performance, notice: 'Performance was successfully created.' }
         format.json { render json: @performance, status: :created, location: @performance }
       else
@@ -66,6 +76,7 @@ class PerformancesController < ApplicationController
         format.json { render json: @performance.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # DELETE /performances/1

@@ -1,0 +1,27 @@
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Task</th>
+    <th>Time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+
+  <tr>
+    <td><%= @todo.date %></td>
+    <td><%= @todo.task %></td>
+    <td><%= @todo.time %></td>
+    <td><%= link_to 'Show', @todo %></td>
+    <td><%= link_to 'Edit', edit_todo_path(@todo) %></td>
+    <td><%= link_to "destroy", @todo, :method => :delete %></td>
+  </tr>
+
+</table>
+
+<br />
+</div>
+
+
+<%#= link_to "Excel",todos_path(format: "xls") %>

@@ -3,48 +3,41 @@
 <head>
   <title>Sample</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application","jquery-1.4.2.min","rails.js","highcharts" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript"> 
-$(document).ready(function(){
-$(".flip").click(function(){
-    $(".panel").slideToggle("slow");
-  });
-});
-$(document).ready(function(){
-     $("table tr:even").addClass('stripe');
-});
-</script>
 </head>
 <body>
 <div class="container">
  <div class="header">
-      
     	<div class="top_section">
-          		<img src="/assets/logo.png" alt="Smiley face"  />
-                       <ol>
-                             <li><a href="/employees">HOME</a></li>
-                             <li><a href="/platforms">PLATFORM</a></li>
-                             <li><a href="/projects">PROJECT</a></li>
-                             <li><a href="/performances">PERFORMANCE</a></li>
-                       </ol>  
-   
-
- </div>
- <div id="user_nav">
-    <% if user_signed_in? %>
-      Signed in as <%= current_user.email %>. Not you?
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-    <% end %>
+          <span class="image" style="margin-top:10px;float: left;"><img src="/assets/logo.png" alt="Smiley face"  /></span>
+          <div class="navg">
+            <ol>
+            <li><a href="/employees">HOME</a></li>
+            <li><a href="/platforms">PLATFORM</a></li>
+            <li><a href="/projects">PROJECT</a></li>
+            <li><a href="/performances">PERFORMANCE</a></li>
+            <li><a href="/todos">TASK</a></li>
+            </ol> 
+          </div> 
+       </div>       
+       <div class="back_nav">
+          <div id="user_nav">
+            
+            <% if user_signed_in? %>
+            Welcome  <%= current_user.email %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+            <% else %>
+            <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+            <% end %>
+          </div>
+      </div>
   </div>
- </div>
-
-  
+   <div class="innerpart" style="width:100%;float:left;">
+    <div class="wrapper">
    <%= yield %>	 
-  
+    </div>
+   </div>
   
   
 <footer>
@@ -52,16 +45,9 @@ $(document).ready(function(){
                   <div class="foot_1">  
                   <p>© Copyright 2012  Shri Ram IT Solutions All Rights Reserved</p>
                   <a href="http://www.shriramits.com">More details.Click!</a>
-                  <span>Designed by ROR TEAM</span>
+                  <span style="font-weight:bold;">Designed by ROR TEAM</span>
 	      </div>
-	      <div class="nav">
-	          	<ol>
-                             <li><a href="/employees">HOME</a></li>
-                             <li><a href="/platforms">PLATFORM</a></li>
-                             <li><a href="/projects">PROJECT</a></li>
-                             <li><a href="/performances">PERFORMANCE</a></li>
-                       </ol>  
-       	</div>                   
+	                        
 </footer>
 	
 

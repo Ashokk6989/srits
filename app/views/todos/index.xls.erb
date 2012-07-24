@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Task</th>
+    <th>Time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @todos.each do |todo| %>
+  <tr>
+    <td><%= todo.date %></td>
+    <td><%= todo.task %></td>
+    <td><%= todo.time %></td>
+  </tr>
+<% end %>
+</table>

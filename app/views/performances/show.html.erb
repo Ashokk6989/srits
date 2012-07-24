@@ -1,3 +1,29 @@
+<script type="text/javascript">
+$(document).ready(function(){
+$('#new_comment').submit(function() {
+  $.ajax({
+    url: "/comments",
+    type: "POST",
+    data: $(this).serialize(),
+    success: function(msg) {
+      $('#comment_show').prepend(msg);
+      console.log('successssssss');
+      
+    }
+  });
+	return false;
+});
+});
+</script>
+
+<style>
+#comment_content {
+height:30px;
+}
+.comm {
+float:left;}
+</style>
+
 <div class="index">
 <p id="notice"><%= notice %></p>
 
@@ -7,8 +33,28 @@
 </p>
 
 <p>
+  <b>Client:</b>
+  <%= @performance.project.client %>
+</p>
+
+<p>
   <b>Project:</b>
   <%= @performance.project.name unless @performance.project.nil? %>
+</p>
+
+<p>
+  <b>Start Date:</b>
+  <%= @performance.start_date %>
+</p>
+
+<p>
+  <b>End Date:</b>
+  <%= @performance.end_date %>
+</p>
+
+<p>
+  <b>Task:</b>
+  <%= @performance.task %>
 </p>
 
 <p>
@@ -19,10 +65,40 @@
 <p>
   <b>Grade:</b>
   <%= @performance.grade %>
-  
-</p>
-<a href="http://www.gmail.com"><input type="button" value="Send Mail"/>
+  </p>
+    <div class="comm">
+    <h2>Task List</h2>
+      <%= form_for Comment.new(:commentable => @performance) do |f| %>
+        <p>
+          <%= f.hidden_field :commentable_id %>
+          <%= f.hidden_field :commentable_type %>
+          <%= f.label :content %><br />
+          <%= f.text_area :content %>
+          <%#= f.label :Time %><br />
+          <%#= f.text_field :time %>
+        </p>
+        <p><%= f.submit "Submit" %></p>
+      <% end %>
+      <div id="comment_show">
+      <% @comments.each do |c| %>
+        <p>
+          <b>Comment:</b>
+          <%= c.content %>&nbsp;&nbsp;<br/> 
+          (<%= (c.created_at) %>)
+        </p>
+        <!--<p>
+          <b>Time:</b>
+          <%#= c.time %>&nbsp;&nbsp;<br/> 
+        </p>-->
+      <% end %>
+      </div>
+      <%= paginate @comments %>
+  </div>
+  <table><tr><td><a href="/performances/<%=@performance.id%>.pdf">Download Pdf</a></td></tr><tr><td>
+<iframe src="/performances/<%=@performance.id%>.pdf" style="width:425px; height:355px;" frameborder="0"></iframe>
+</td></tr><tr><td style="text-align:center;">Maintained by <a href="http://shriramits.com" target="_blank" >shriramits.com</a> </td></tr></table>
+<!--<a href="/performances/<%#=@performance.id%>.pdf"><input type="button" value="Generate PDF"/> -->
 </div>
-
-<%= link_to 'Edit', edit_performance_path(@performance) %> 
-<%= link_to 'Back', performances_path %>
+<div class="employee"><img src="/assets/employee-scheduling-softwar.jpg" alt="Smiley face"  /></div>
+<%#= link_to 'Edit', edit_performance_path(@performance) %> 
+<%#= link_to 'Back', performances_path %>
